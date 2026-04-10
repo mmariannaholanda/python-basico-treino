@@ -352,3 +352,201 @@ biblioteca.add_livro(livro13)
 # testar
 biblioteca.listar_livros()
 biblioteca.generos()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Livros:
+    def __init__(self, nome, genero):
+        self.nome = nome
+        self.genero = genero.lower()
+        #criar listas para automatizacao:
+        self.nomes = []
+        self.generos = []
+        #-----------------
+        self.nomes.append(self.nome)
+        self.generos.append(self.generos)
+
+class Biblioteca:
+    def __init__(self):
+        self.livros = []
+        self.romances = []
+        self.fantasia = []
+        self.ficcao = []
+        self.suspense = []
+        self.terror = []
+        self.acao = []
+
+    def add_livro(self, livro):
+        self.livros.append(livro)
+
+        if livro.genero == 'fantasia':
+            self.fantasia.append(livro)
+
+        elif livro.genero == 'romance':
+            self.romances.append(livro)
+
+        elif livro.genero == 'ficcao':
+            self.ficcao.append(livro)
+
+        elif livro.genero == 'suspense':
+            self.suspense.append(livro)
+
+        elif livro.genero == 'terror':
+            self.terror.append(livro)
+
+        elif livro.genero == 'acao':
+            self.acao.append(livro)
+
+    def adicionarL(self):
+        ln = input('Qual o nome do livro que você quer adicionar? ')
+        lg = input('Qual o gênero do livro que você quer adicionar? ')
+
+        livro = Livros(ln, lg)
+        self.add_livro(livro)
+
+        print('Livro adicionado com sucesso!')
+
+    def listar_livros(self):
+        print('Todos os nossos livros:')
+        for livro in self.livros:
+            print(f'{livro.nome} - Gênero: {livro.genero}')
+            pesquisar = True
+            while pesquisar:
+                print('\nQuer filtrar algum gênero específico (s/n)? ')
+                pesquisarGenero = input('').lower()
+                print()
+                if pesquisarGenero == 's':
+                    preferencia = input('Digite o gênero desejado: \n 1 - Romance\n 2 - Fantasia\n 3 - Ficção\n 4 - Suspense\n 5 - Terror\n 6 - Ação\n 7 - Outro\n -> ')
+                    if preferencia == '1':
+                        print(f'\nLivros de romance:')
+                        for livro in self.romances:
+                            print(f'- {livro.nome}')
+
+                    elif preferencia == '2':
+                        print(f'\nLivros de fantasia:')
+                        for livro in self.fantasia:
+                            print(f'- {livro.nome}')
+
+                    elif preferencia == '3':
+                        print(f'\nLivros de ficção:')
+                        for livro in self.ficcao:
+                            print(f'- {livro.nome}')
+
+                    elif preferencia == '4':
+                        print(f'\nLivros de suspense:')
+                        for livro in self.suspense:
+                            print(f'- {livro.nome}')
+
+                    elif preferencia == '5':
+                        print(f'\nLivros de terror:')
+                        for livro in self.terror:
+                            print(f'- {livro.nome}')
+
+                    elif preferencia == '6':
+                        print(f'\nLivros de ação:')
+                        for livro in self.acao:
+                            print(f'- {livro.nome}')
+
+                    elif preferencia == '7':
+                        print(f'\nSó temos os gêneros de 1-6 na nossa biblioteca.')
+
+                    else:
+                        print(f'\nDigite um número válido.')
+
+                    continuar_pesquisando = input('\n\nPesquisar outro gênero (s/n) ? ').lower()
+                    if continuar_pesquisando == 'n':
+                        pesquisar = False
+                        break
+                    else:
+                        pesquisar = True
+                    
+                
+                
+                elif pesquisarGenero == 'n':
+                    pesquisar = False
+                    print('Você finalizou a consulta.')
+                    break
+                else:
+                    print('Digite uma resposta válida!')
+            if continuar_pesquisando == 'n' or pesquisarGenero == 'n':
+                break                 
+
+
+# ------------- CONFIGURAÇÕES PRE-ESTABELECIDAS-------------
+livro1 = Livros('A Rainha', 'suspense')
+livro2 = Livros('A Estrela Encantada', 'ficcao')
+livro3 = Livros('Solidão com Vista para o Mar', 'romance')
+livro4 = Livros('Hang With', 'acao')
+livro5 = Livros('Íris', 'terror')
+livro6 = Livros('Rosto na Ponta do Queixo', 'romance')
+livro7 = Livros('Versos Precisos', 'fantasia')
+livro8 = Livros('Lágrimas Negras', 'terror')
+livro9 = Livros('Entre Flores e Estrelas', 'romance')
+livro10 = Livros('Cobertor', 'ficcao')
+livro11 = Livros('Chuva de Prata', 'fantasia')
+livro12 = Livros('A Força Estranha', 'suspense')
+livro13 = Livros('Hero Lonely', 'acao')
+
+biblioteca = Biblioteca()
+biblioteca.add_livro(livro1)
+biblioteca.add_livro(livro2)
+biblioteca.add_livro(livro3)
+biblioteca.add_livro(livro4)
+biblioteca.add_livro(livro5)
+biblioteca.add_livro(livro6)
+biblioteca.add_livro(livro7)
+biblioteca.add_livro(livro8)
+biblioteca.add_livro(livro9)
+biblioteca.add_livro(livro10)
+biblioteca.add_livro(livro11)
+biblioteca.add_livro(livro12)
+biblioteca.add_livro(livro13)
+#----------------------------------------------------------
+
+def usuario():
+    print('Somos sua biblioteca preferida!! Digite:\n 1 - Pesquisar\n 2 - Adicionar')
+
+    try:
+        decisao = int(input('-> '))
+    except ValueError:
+        print('Digite apenas números (1 ou 2)!')
+        return
+
+    if decisao == 1:
+        biblioteca.listar_livros()
+    elif decisao == 2:
+        biblioteca.adicionarL()
+    else:
+        print('Opção inválida')
+    
+    while True:
+        print('Continue pesquisando... Digite:\n 1 - Pesquisar\n 2 - Adicionar')
+
+        try:
+            decisao = int(input('-> '))
+        except ValueError:
+            print('Digite apenas números (1 ou 2)!')
+            return
+
+        if decisao == 1:
+            biblioteca.listar_livros()
+        elif decisao == 2:
+            biblioteca.adicionarL()
+        else:
+            print('Opção inválida')
+        
+
+
+# testar
+usuario()
