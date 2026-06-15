@@ -517,11 +517,15 @@ biblioteca.add_livro(livro13)
 def usuario():
     print('Somos sua biblioteca preferida!! Digite:\n 1 - Pesquisar\n 2 - Adicionar')
 
-    try:
-        decisao = int(input('-> '))
-    except ValueError:
-        print('Digite apenas números (1 ou 2)!')
+   try:
+    decisao = int(input('-> '))
+
+    if decisao not in [1, 2]:
+        print('Digite apenas 1 ou 2!')
         return
+
+except ValueError:
+    print('Digite apenas números!')
 
     if decisao == 1:
         biblioteca.listar_livros()
